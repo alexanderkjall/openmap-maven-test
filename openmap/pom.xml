@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.bbn</groupId>
+    <artifactId>openmap</artifactId>
+    <packaging>pom</packaging>
+    <version>5.1.11-SNAPSHOT</version>
+    <name>openmap</name>
+    <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>corba</module>
+        <module>ext</module>
+        <module>j3d</module>
+        <module>maptileservlet</module>
+        <module>openmap-core</module>
+        <module>svg</module>
+        <module>wmsservlet</module>
+        <module>vpfservlet</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <!-- Tomcat 7 has a different manager path - text - than other versions -->
+                    <url>http://localhost:8080/manager/text</url>
+                    <!-- Refer to the server settings in your ~/.m2/settings.xml -->
+                    <server>dev-tomcat</server>
+                    <path>/app</path>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>common-junit48</artifactId>
+                        <version>2.18.1</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+
+                    <forkCount>3</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

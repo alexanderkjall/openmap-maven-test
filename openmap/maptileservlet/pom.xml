@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.bbn</groupId>
+        <artifactId>openmap</artifactId>
+        <version>5.1.11-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>maptileservlet</artifactId>
+    <packaging>war</packaging>
+    <name>Maptileservlet</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.bbn</groupId>
+            <artifactId>openmap-core</artifactId>
+            <version>5.1.11-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/2</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <finalName>app</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.vm</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>/host/project/resin_linux_config</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
